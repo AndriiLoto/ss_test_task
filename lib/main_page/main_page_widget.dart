@@ -1,8 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:ss_test_task/constants/constants.dart';
 
+///Widget that displays Main Page
 class MainPageWidget extends StatelessWidget {
+  ///Constructor
   const MainPageWidget({super.key});
 
   @override
@@ -15,7 +18,9 @@ class MainPageWidget extends StatelessWidget {
   }
 }
 
+///Widget that is responsible for showing dynamic changing elements on the page
 class MyHomePage extends StatefulWidget {
+  ///Constructor
   const MyHomePage({
     super.key,
   });
@@ -25,16 +30,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const maxNumber = 255;
   int red = maxNumber;
   int green = maxNumber;
   int blue = maxNumber;
   void changeColor() {
-    setState(() {
-      red = Random().nextInt(maxNumber);
-      green = Random().nextInt(maxNumber);
-      blue = Random().nextInt(maxNumber);
-    });
+    setState(
+      () {
+        red = Random().nextInt(maxNumber);
+        green = Random().nextInt(maxNumber);
+        blue = Random().nextInt(maxNumber);
+      },
+    );
   }
 
   @override
@@ -46,8 +52,19 @@ class _MyHomePageState extends State<MyHomePage> {
           GestureDetector(
             onTap: changeColor,
           ),
-          const Center(
-            child: Text('Hello There'),
+          Center(
+            child: Text(
+              'Hello There',
+              style: TextStyle(
+                color: Color.fromRGBO(
+                  red + textColor,
+                  green + textColor,
+                  blue + textColor,
+                  1,
+                ),
+                fontSize: myFontSize,
+              ),
+            ),
           ),
         ],
       ),
